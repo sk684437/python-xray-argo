@@ -26,28 +26,28 @@ from cryptography import x509
 from cryptography.x509.oid import NameOID
 
 # =========================== 环境变量 ===========================
-UPLOAD_URL = os.environ.get('UPLOAD_URL', '')          # 节点或订阅上传地址
-PROJECT_URL = os.environ.get('PROJECT_URL', '')        # 项目url,用于自动保活或上传订阅
-AUTO_ACCESS = os.environ.get('AUTO_ACCESS', '').lower() == 'true'  # true开启自动保活,默认关闭
-FILE_PATH = os.environ.get('FILE_PATH', '.cache')      # 运行目录,sub.txt保存路径
-SUB_PATH = os.environ.get('SUB_PATH', 'sub')           # 订阅token
+UPLOAD_URL = os.environ.get('UPLOAD_URL', '')
+PROJECT_URL = os.environ.get('PROJECT_URL', '')
+AUTO_ACCESS = os.environ.get('AUTO_ACCESS', 'true').lower() == 'true'
+FILE_PATH = os.environ.get('FILE_PATH', '.cache')
+SUB_PATH = os.environ.get('SUB_PATH', 'baby')
 UUID = os.environ.get('UUID', '20e6e496-cf19-45c8-b883-14f5e11cd9f1')  # UUID
 NEZHA_SERVER = os.environ.get('NEZHA_SERVER', '')      # 哪吒面板域名,v0：nezha.xxx.com  v1: nezha.xxx.com:8008
 NEZHA_PORT = os.environ.get('NEZHA_PORT', '')          # v1留空, v0填agent通信端口
 NEZHA_KEY = os.environ.get('NEZHA_KEY', '')            # v1的NZ_CLIENT_SECRET或v0 agent密钥
-ARGO_DOMAIN = os.environ.get('ARGO_DOMAIN', '')        # Argo固定隧道域名,留空使用临时隧道
-ARGO_AUTH = os.environ.get('ARGO_AUTH', '')            # Argo固定隧道token或json,留空使用临时隧道
-ARGO_PORT = int(os.environ.get('ARGO_PORT', '8001'))   # Argo隧道端口
+ARGO_DOMAIN = os.environ.get('ARGO_DOMAIN', 'wasmer.o0o0o.netlib.re')        # Argo固定隧道域名,留空使用临时隧道
+ARGO_AUTH = os.environ.get('ARGO_AUTH', 'eyJhIjoiMTQ2MTk0NWQ1Y2QxZDIyOGQ0NTQ1MjU4OWNmMmQxMDEiLCJ0IjoiMDA0OTNiMmYtMGUzZi00ZjMxLWFmYTgtNzc0YTEwMjlkZTBmIiwicyI6Ik1UWTFOVEZoTldNdFpEVXlNeTAwTm1RMkxUZzBOV1l0TVRneU5XTXdPR05sTjJFMSJ9')            # Argo固定隧道token或json,留空使用临时隧道
+ARGO_PORT = int(os.environ.get('ARGO_PORT', '8443'))   # Argo隧道端口
 S5_PORT = os.environ.get('S5_PORT', '')                # socks5端口,留空不开启
 HY2_PORT = os.environ.get('HY2_PORT', '')              # hy2端口,留空不开启
 REALITY_PORT = os.environ.get('REALITY_PORT', '')      # reality端口,留空不开启
-CFIP = os.environ.get('CFIP', 'cf.877774.xyz')         # 优选ip或域名
+CFIP = os.environ.get('CFIP', '23.227.38.65')         # 优选ip或域名
 CFPORT = int(os.environ.get('CFPORT', '443'))          # 优选端口
-NAME = os.environ.get('NAME', '')                      # 节点名称
-CHAT_ID = os.environ.get('CHAT_ID', '')                # Telegram chat_id
-BOT_TOKEN = os.environ.get('BOT_TOKEN', '')            # Telegram bot_token
+NAME = os.environ.get('NAME', 'Wasmer')                      # 节点名称
+CHAT_ID = os.environ.get('CHAT_ID', '1780047117')                # Telegram chat_id
+BOT_TOKEN = os.environ.get('BOT_TOKEN', '8990889277:AAH9oqD8dEHWCJ7QqhVIRoKxvDFVs3CtOeU')            # Telegram bot_token
 PORT = int(os.environ.get('PORT') or '3000')           # http订阅端口
-SHOW_LOG = os.environ.get('SHOW_LOG', 'true').lower() not in ('false', 'disable', 'no')  # 是否显示日志,默认显示，no/false/disable 不显示
+SHOW_LOG = os.environ.get('SHOW_LOG', 'no').lower() not in ('false', 'disable', 'no')  # 是否显示日志,默认显示，no/false/disable 不显示
 
 # =========================== 日志控制 ===========================
 def log(msg):
@@ -889,7 +889,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.send_header('Content-Type', 'text/html; charset=utf-8')
             self.end_headers()
             self.wfile.write(
-                b'Hello world!<br><br>You can access /{SUB_PATH}(Default: /sub) get your nodes!')
+                b'Hello world!')
             return
 
         self.send_response(404)
